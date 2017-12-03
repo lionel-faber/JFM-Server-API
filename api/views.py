@@ -16,7 +16,8 @@ def images(request):
 
 @csrf_exempt
 def prayerrequest(request):
-    subject = "Prayer Request from " + request.POST['sender_name']
-    message = request.POST['prayer_request'] + " " + request.POST['phone_no']
-    send_mail(subject, message, 'aca.jfm.pjcr@gmail.com', ['lionel1704@gmail.com'], fail_silently=False)
+    sender = request.POST.get('sender_name')
+    message = request.POST.get('prayer_request')
+    phone_no =request.POST.get('phone_no')
+    request = PrayerRequests(sender = sender, phone = phone_no, message = message)    
     return HttpResponse("Prayer Request Sent")
