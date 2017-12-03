@@ -19,5 +19,6 @@ def prayerrequest(request):
     sender = request.POST.get('sender_name')
     message = request.POST.get('prayer_request')
     phone_no =request.POST.get('phone_no')
-    request = PrayerRequests(sender = sender, phone = phone_no, message = message)    
+    request = PrayerRequests(sender = sender, phone = phone_no, message = message)
+    request.save()
     return HttpResponse("Prayer Request Sent")
